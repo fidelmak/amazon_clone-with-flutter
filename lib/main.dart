@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'view/home_screen.dart';
+import 'amazonApp/view/home_screen.dart';
 
 void main() {
   runApp(
