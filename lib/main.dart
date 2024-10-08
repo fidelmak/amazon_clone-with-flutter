@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'amazonApp/view/home_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-    const MyApp(),
+    ProviderScope(
+      child: MyApp(),
+    ),
   );
 }
 

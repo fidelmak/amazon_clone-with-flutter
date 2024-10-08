@@ -1,221 +1,137 @@
+import 'package:amazon_clone/amazonApp/view/product_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../const/colors.dart';
+import '../provider/product_provider.dart';
+import '../widgets/header.dart';
+import '../widgets/product_card.dart';
+import '../widgets/section_text.dart';
 
-class EcomWeb extends StatefulWidget {
+class EcomWeb extends ConsumerWidget {
   const EcomWeb({super.key});
 
   @override
-  State<EcomWeb> createState() => _EcomWebState();
-}
-
-class _EcomWebState extends State<EcomWeb> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final ScreenSize = MediaQuery.of(context).size;
+    final ProductRef = ref.watch(ProductFutureProvider);
+    final ProductJewery = ref.watch(productJeweleryProvider);
+
     return Scaffold(
-      backgroundColor: MyGlobal.TextWhite,
-      appBar: AppBar(
-        title: Container(
-          child: Image.asset(
-            "assets/images/amz.png",
-            fit: BoxFit.cover,
-            width: 150,
-            height: 150,
+        backgroundColor: MyGlobal.textGrey.withOpacity(0.5),
+        appBar: AppBar(
+          title: Container(
+            child: Image.asset(
+              "assets/images/amz.png",
+              fit: BoxFit.cover,
+              width: 150,
+              height: 150,
+            ),
           ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ClipOval(
-              child: Container(
-                color: Colors.white,
-                width: 30,
-                height: 30,
-                // Set background color to black
-                child: Icon(
-                  Icons.person,
-                  color: Colors.black,
-                  size: 24, // Set icon color to white
-                ),
-              ),
-            ),
-          )
-        ],
-        // Use the custom EcomNavbar widget here
-        backgroundColor: MyGlobal.textColor,
-        toolbarHeight: 60, // Set AppBar background color
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            /////////
-
-            Stack(
-              children: [
-                // Background color split into two parts: black and white
-                Column(
-                  children: [
-                    Container(
-                      height: ScreenSize.height / 32, // Black top half
-                      color: Colors.black,
-                    ),
-                    Container(
-                      height: ScreenSize.height / 32, // White bottom half
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-                // Centered search widget
-                Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black
-                              .withOpacity(0.1), // Light black shadow
-                          spreadRadius: 2, // How wide the shadow spreads
-                          blurRadius: 5, // How blurry the shadow is
-                          offset: Offset(
-                              0, 4), // The direction and amount of the shadow
-                        ),
-                      ],
-                    ),
-                    width: ScreenSize.width / 1.2,
-                    height: ScreenSize.height / 16,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.search),
-                          color: Colors.black,
-                          onPressed: () {
-                            // Search action when icon is pressed
-                          },
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: TextField(
-                              style: TextStyle(
-                                color: Colors.black, // Black input text color
-                              ),
-                              decoration: InputDecoration(
-                                hintText: 'What are you looking for',
-                                hintStyle: TextStyle(
-                                    color: Colors.grey), // Hint text color
-                                border: InputBorder
-                                    .none, // Removes default underline
-                              ),
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.camera_alt_outlined),
-                          color: Colors.black,
-                          onPressed: () {
-                            // Action for camera icon press
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            ////////
-            // Center(
-            //   child: Container(
-            //     decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.circular(24),
-            //       color: Colors.white,
-            //       boxShadow: [
-            //         BoxShadow(
-            //           color:
-            //               Colors.black.withOpacity(0.1), // Light black shadow
-            //           spreadRadius: 2, // How wide the shadow spreads
-            //           blurRadius: 5, // How blurry the shadow is
-            //           offset: Offset(
-            //               0, 4), // The direction and amount of the shadow
-            //         ),
-            //       ],
-            //     ),
-            //     width: ScreenSize.width / 1.2,
-            //     height: ScreenSize.height / 16,
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       crossAxisAlignment: CrossAxisAlignment.center,
-            //       children: [
-            //         IconButton(
-            //           icon: Icon(Icons.search),
-            //           color: Colors.black,
-            //           onPressed: () {
-            //             // Search action when icon is pressed
-            //             // You can add logic to retrieve input from the TextField here
-            //           },
-            //         ),
-            //         Expanded(
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(16.0),
-            //             child: TextField(
-            //               style: TextStyle(
-            //                 color: MyGlobal
-            //                     .textColor, // Makes the input text color black
-            //               ),
-            //               onSubmitted:
-            //                   null, // Executes search when user submits input
-            //               decoration: InputDecoration(
-            //                 labelStyle: TextStyle(color: MyGlobal.textColor),
-            //
-            //                 hintText: 'What are you looking for ',
-            //                 hintStyle: TextStyle(color: MyGlobal.textGrey),
-            //                 border:
-            //                     InputBorder.none, // Removes default underline
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //         IconButton(
-            //           icon: Icon(Icons.camera_alt_outlined),
-            //           color: Colors.black,
-            //           onPressed: () {
-            //             // Search action when icon is pressed
-            //             // You can add logic to retrieve input from the TextField here
-            //           },
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-
+          actions: [
             Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Category",
-                    style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold),
+              padding: const EdgeInsets.all(16.0),
+              child: ClipOval(
+                child: Container(
+                  color: Colors.white,
+                  width: 30,
+                  height: 30,
+                  // Set background color to black
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.black,
+                    size: 24, // Set icon color to white
                   ),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Colors.black54,
-                    size: 16, // Set icon color to white
-                  ),
-                ],
+                ),
               ),
             )
           ],
+          // Use the custom EcomNavbar widget here
+          backgroundColor: MyGlobal.textColor,
+          toolbarHeight: 60, // Set AppBar background color
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Header and SectionText here
+              Header(ScreenSize: ScreenSize),
+              Center(
+                  child: SectionText(
+                yourText: "Jewelery",
+              )),
+
+              // Use ProductRef.when outside GridView
+              ProductJewery.when(data: (products) {
+                return GridView.count(
+                  shrinkWrap:
+                      true, // Ensures the grid only takes up as much space as needed
+                  crossAxisCount: 2,
+                  // Set the number of items per row
+                  physics:
+                      NeverScrollableScrollPhysics(), // Disable scrolling within the grid
+                  children: products.map((product) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((ctx) =>
+                                      ProductPage(productId: product.id))));
+                        },
+                        child: ProductCard(
+                          productImage: product.image,
+                          productPrice: "\$${product.price.toString()}",
+                          productTitle: product.title,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                );
+              }, error: (error, _) {
+                return Text(error.toString());
+              }, loading: () {
+                return CircularProgressIndicator();
+              }),
+              Center(
+                  child: SectionText(
+                yourText: 'All Products',
+              )),
+
+              ProductRef.when(data: (products) {
+                return GridView.count(
+                  shrinkWrap:
+                      true, // Ensures the grid only takes up as much space as needed
+                  crossAxisCount: 2,
+                  // Set the number of items per row
+                  physics:
+                      NeverScrollableScrollPhysics(), // Disable scrolling within the grid
+                  children: products.map((product) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ProductCard(
+                        productImage: product.image,
+                        productPrice: "\$${product.price.toString()}",
+                        productTitle: product.title,
+                      ),
+                    );
+                  }).toList(),
+                );
+              }, error: (error, _) {
+                return Text(error.toString());
+              }, loading: () {
+                return CircularProgressIndicator();
+              }),
+            ],
+          ),
+        ));
   }
 }
+
+////////////////////////////////////////
+
+/////////////// Widgets
+
+//////////////////////////////////////
