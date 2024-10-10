@@ -13,13 +13,22 @@ class EcomNavbar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            child: Image.asset(
-              "assets/images/amazon_logo.png",
-              fit: BoxFit.cover,
-              width: 150,
-              height: 150,
+            width: 150,
+            height: 150,
+            child: Text(
+              "BETASTORE",
+              style: TextStyle(color: Colors.white),
             ),
           ),
+
+          // Container(
+          //   child: Image.asset(
+          //     "assets/images/amazon_logo.png",
+          //     fit: BoxFit.cover,
+          //     width: 150,
+          //     height: 150,
+          //   ),
+          // ),
           Container(
             color: Colors.black, // Set background color to black
             child: Icon(

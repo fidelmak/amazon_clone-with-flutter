@@ -9,7 +9,18 @@ import '../widgets/product_card.dart';
 import '../widgets/section_text.dart';
 
 class EcomWeb extends ConsumerWidget {
-  const EcomWeb({super.key});
+  EcomWeb({super.key});
+  int _selectedIndex = 0;
+
+  static const List<Widget> _pages = <Widget>[
+    Center(child: Text('Home Page', style: TextStyle(fontSize: 24))),
+    Center(child: Text('Search Page', style: TextStyle(fontSize: 24))),
+    Center(child: Text('Profile Page', style: TextStyle(fontSize: 24))),
+  ];
+
+  void _onItemTapped(int index) {
+    _selectedIndex = index;
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,13 +30,34 @@ class EcomWeb extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: MyGlobal.TextWhite,
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: 'History',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.orange, // Set color of selected item
+        onTap: _onItemTapped, // Handle item tap
+      ),
       appBar: AppBar(
         title: Container(
-          child: Image.asset(
-            "assets/images/amz.png",
-            fit: BoxFit.cover,
-            width: 150,
-            height: 150,
+          child: Text(
+            "BETASTORE",
+            style: TextStyle(
+              fontSize: 30,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         actions: [
@@ -112,11 +144,22 @@ class EcomWeb extends ConsumerWidget {
                           16, // 2 products per row, minus padding
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: ProductCard(
-                          productImage: product.image,
-                          productPrice: "\$${product.price.toString()}",
-                          productTitle: product.title,
-                          h: screenSize.height / 3.2, // Adjust card height
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (ctx) =>
+                                    ProductPage(productId: product.id),
+                              ),
+                            );
+                          },
+                          child: ProductCard(
+                            productImage: product.image,
+                            productPrice: "\$${product.price.toString()}",
+                            productTitle: product.title,
+                            h: screenSize.height / 3.2, // Adjust card height
+                          ),
                         ),
                       ),
                     );
