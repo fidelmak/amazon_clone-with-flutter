@@ -13,125 +13,126 @@ class EcomWeb extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ScreenSize = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.of(context).size;
     final ProductRef = ref.watch(ProductFutureProvider);
     final ProductJewery = ref.watch(productJeweleryProvider);
 
     return Scaffold(
-        backgroundColor: MyGlobal.textGrey.withOpacity(0.5),
-        appBar: AppBar(
-          title: Container(
-            child: Image.asset(
-              "assets/images/amz.png",
-              fit: BoxFit.cover,
-              width: 150,
-              height: 150,
-            ),
+      backgroundColor: MyGlobal.TextWhite,
+      appBar: AppBar(
+        title: Container(
+          child: Image.asset(
+            "assets/images/amz.png",
+            fit: BoxFit.cover,
+            width: 150,
+            height: 150,
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ClipOval(
-                child: Container(
-                  color: Colors.white,
-                  width: 30,
-                  height: 30,
-                  // Set background color to black
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.black,
-                    size: 24, // Set icon color to white
-                  ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ClipOval(
+              child: Container(
+                color: Colors.white,
+                width: 30,
+                height: 30,
+                child: Icon(
+                  Icons.person,
+                  color: Colors.black,
+                  size: 24,
                 ),
               ),
-            )
-          ],
-          // Use the custom EcomNavbar widget here
-          backgroundColor: MyGlobal.textColor,
-          toolbarHeight: 60, // Set AppBar background color
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Header and SectionText here
-              Header(ScreenSize: ScreenSize),
-              Center(
-                  child: SectionText(
-                yourText: "Jewelery",
-              )),
+            ),
+          ),
+        ],
+        backgroundColor: MyGlobal.textColor,
+        toolbarHeight: 60,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Header and SectionText
+            Header(ScreenSize: screenSize),
+            Center(child: SectionText(yourText: "Jewelery")),
 
-              // Use ProductRef.when outside GridView
-              ProductJewery.when(data: (products) {
-                return GridView.count(
-                  shrinkWrap:
-                      true, // Ensures the grid only takes up as much space as needed
-                  crossAxisCount: 2,
-                  // Set the number of items per row
-                  physics:
-                      NeverScrollableScrollPhysics(), // Disable scrolling within the grid
+            // Jewelry Product Grid
+            ProductJewery.when(
+              data: (products) {
+                return Wrap(
+                  spacing: 8.0, // Horizontal spacing between items
+                  runSpacing: 8.0, // Vertical spacing between rows
                   children: products.map((product) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
+                    return SizedBox(
+                      width: screenSize.width / 2 -
+                          16, // 2 products per row, minus padding
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((ctx) =>
-                                      ProductPage(productId: product.id))));
-                        },
-                        child: ProductCard(
-                          productImage: product.image,
-                          productPrice: "\$${product.price.toString()}",
-                          productTitle: product.title,
+                                builder: (ctx) =>
+                                    ProductPage(productId: product.id),
+                              ),
+                            );
+                          },
+                          child: ProductCard(
+                            productImage: product.image,
+                            productPrice: "\$${product.price.toString()}",
+                            productTitle: product.title,
+                            h: screenSize.height / 3.2, // Adjust card height
+                          ),
                         ),
                       ),
                     );
                   }).toList(),
                 );
-              }, error: (error, _) {
+              },
+              error: (error, _) {
                 return Text(error.toString());
-              }, loading: () {
+              },
+              loading: () {
                 return CircularProgressIndicator();
-              }),
-              Center(
-                  child: SectionText(
-                yourText: 'All Products',
-              )),
+              },
+            ),
 
-              ProductRef.when(data: (products) {
-                return GridView.count(
-                  shrinkWrap:
-                      true, // Ensures the grid only takes up as much space as needed
-                  crossAxisCount: 2,
-                  // Set the number of items per row
-                  physics:
-                      NeverScrollableScrollPhysics(), // Disable scrolling within the grid
+            Center(child: SectionText(yourText: 'All')),
+
+            // All Products Grid
+            ProductRef.when(
+              data: (products) {
+                return Wrap(
+                  spacing: 8.0, // Horizontal spacing between items
+                  runSpacing: 8.0, // Vertical spacing between rows
                   children: products.map((product) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ProductCard(
-                        productImage: product.image,
-                        productPrice: "\$${product.price.toString()}",
-                        productTitle: product.title,
+                    return SizedBox(
+                      width: screenSize.width / 2 -
+                          16, // 2 products per row, minus padding
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: ProductCard(
+                          productImage: product.image,
+                          productPrice: "\$${product.price.toString()}",
+                          productTitle: product.title,
+                          h: screenSize.height / 3.2, // Adjust card height
+                        ),
                       ),
                     );
                   }).toList(),
                 );
-              }, error: (error, _) {
+              },
+              error: (error, _) {
                 return Text(error.toString());
-              }, loading: () {
+              },
+              loading: () {
                 return CircularProgressIndicator();
-              }),
-            ],
-          ),
-        ));
+              },
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
-
-////////////////////////////////////////
-
-/////////////// Widgets
-
-//////////////////////////////////////

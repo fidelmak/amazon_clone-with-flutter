@@ -24,7 +24,7 @@ class Header extends StatelessWidget {
             ),
             Container(
               height: ScreenSize.height / 32, // White bottom half
-              color: MyGlobal.textGrey.withOpacity(0.5),
+              color: MyGlobal.TextWhite,
             ),
           ],
         ),
@@ -59,7 +59,6 @@ class Header extends StatelessWidget {
                 ),
                 Expanded(
                   child: TextField(
-
                     style: TextStyle(
                       color: Colors.black, // Black input text color
                     ),
