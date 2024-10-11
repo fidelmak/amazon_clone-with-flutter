@@ -1,16 +1,72 @@
-# amazon_clone
+# BETASTORE
 
-A new Flutter project.
+ECOMMERCE APPLICATION 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+File structure 
 
-A few resources to get you started if this is your first Flutter project:
+lib/
+|-- models/
+|   |-- user.dart
+|   |-- product.dart
+|   |-- order.dart
+|
+|-- providers/
+|   |-- user_provider.dart
+|   |-- product_provider.dart
+|   |-- cart_provider.dart
+|   |-- order_provider.dart
+|
+|-- services/
+|   |-- api_service.dart
+|   |-- auth_service.dart
+|   |-- product_service.dart
+|   |-- order_service.dart
+|
+|-- screens/
+|   |-- auth/
+|   |   |-- login_screen.dart
+|   |   |-- register_screen.dart
+|   |
+|   |-- home/
+|   |   |-- home_screen.dart
+|   |
+|   |-- product/
+|   |   |-- product_list_screen.dart
+|   |   |-- product_detail_screen.dart
+|   |
+|   |-- cart/
+|   |   |-- cart_screen.dart
+|   |
+|   |-- order/
+|   |   |-- order_list_screen.dart
+|   |   |-- order_detail_screen.dart
+|
+|-- widgets/
+|   |-- custom_button.dart
+|   |-- product_card.dart
+|   |-- cart_item.dart
+|
+|-- utils/
+|   |-- constants.dart
+|   |-- validators.dart
+|
+main.dart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# CORE FEATURE 
+Core Features:
+User Accounts: Allow users to create, manage, and secure their accounts.
+
+Product Browsing: Enable users to search, filter, and browse products.
+
+Shopping Cart: Provide a shopping cart for users to add, remove, and manage items.
+
+Order Management: Allow users to place orders, track shipments, and view order history.
+
+Payment Integration: Support multiple payment methods (credit/debit cards, PayPal, etc.).
+
+Product Reviews and Ratings: Enable users to leave reviews and ratings for products.
+
+Wish Lists: Allow users to save items for later purchase.
