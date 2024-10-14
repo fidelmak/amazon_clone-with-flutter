@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final productImage;
+  final VoidCallback addFunc;
   final String productPrice;
   final String productTitle;
   final double h;
@@ -12,6 +13,7 @@ class ProductCard extends StatelessWidget {
     required this.h,
     required this.productPrice,
     required this.productTitle,
+    required this.addFunc,
   });
 
   @override
@@ -71,7 +73,7 @@ class ProductCard extends StatelessWidget {
                         style: TextStyle(color: Colors.black87),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: addFunc,
                         child: Text(
                           "Add",
                           style: TextStyle(color: Colors.red),

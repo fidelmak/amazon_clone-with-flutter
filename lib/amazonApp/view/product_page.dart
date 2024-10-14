@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../provider/product_provider.dart';
+import '../widgets/custom_button.dart';
 
 class ProductPage extends ConsumerWidget {
   final int productId;
@@ -14,6 +15,22 @@ class ProductPage extends ConsumerWidget {
 
     return SafeArea(
       child: Scaffold(
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: CustomButton(
+            screenSize: screenSize, text: 'Buy',
+            onPressed: () {}, // Set the button width to half the screen width
+          ),
+        ),
+        appBar: AppBar(
+          title: Text('Product Details'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: productRef.when(
@@ -53,30 +70,6 @@ class ProductPage extends ConsumerWidget {
                               child: Text(product.description,
                                   style: TextStyle(color: Colors.white))),
                         ),
-                        SizedBox(height: 20),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Colors.white, // Set background color to white
-                            foregroundColor:
-                                Colors.orange, // Set text color to orange
-                            side: BorderSide(
-                                color: Colors.orange,
-                                width: 2), // Add orange border
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  12), // Set border radius to 12
-                            ),
-                            fixedSize: Size(screenSize.width / 1.2,
-                                50), // Set the button's width and height
-                          ),
-                          child: Text(
-                            "Buy",
-                            style: TextStyle(
-                                fontSize: 16), // Adjust text size if needed
-                          ),
-                        )
                       ],
                     ),
                   ),

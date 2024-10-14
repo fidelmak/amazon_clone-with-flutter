@@ -1,6 +1,5 @@
+import 'package:amazon_clone/route/route.dart';
 import 'package:flutter/material.dart';
-
-import 'amazonApp/view/home_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
@@ -11,16 +10,14 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class MyApp extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(goRouterProvider);
+
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'EcomWeb',
-      theme: ThemeData.dark(),
-      home: EcomWeb(),
+      routerConfig: router,
     );
   }
 }

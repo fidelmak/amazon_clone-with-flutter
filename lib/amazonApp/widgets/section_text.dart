@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SectionText extends StatelessWidget {
+  final VoidCallback more;
   final String yourText;
   const SectionText({
     super.key,
     required this.yourText,
+    required this.more,
   });
 
   @override
@@ -12,7 +14,8 @@ class SectionText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment:
+            MainAxisAlignment.spaceBetween, // Use spaceBetween to spread out
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
@@ -22,17 +25,15 @@ class SectionText extends StatelessWidget {
                 fontSize: 24,
                 fontWeight: FontWeight.bold),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width / 1.8,
-          ),
-          Icon(
-            Icons.arrow_forward_ios_rounded,
-            color: Colors.black54,
-            size: 16, // Set icon color to white
-          ),
+          IconButton(
+            icon: Icon(
+              Icons.arrow_forward_ios_rounded,
+              color: Colors.black54,
+              size: 16,
+            ),
 
-          ///////
-          const SizedBox(height: 12),
+            onPressed: more, // Set icon color to white
+          ),
         ],
       ),
     );
