@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../view/profile/profile.dart';
+
 class EcomNavbar extends StatelessWidget {
   const EcomNavbar({super.key});
 
@@ -30,10 +32,18 @@ class EcomNavbar extends StatelessWidget {
           //   ),
           // ),
           Container(
-            color: Colors.black, // Set background color to black
-            child: Icon(
-              Icons.person,
-              color: Colors.white, // Set icon color to white
+            color: Colors.black,
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+              },
+              icon: Icon(
+                Icons.person,
+                color: Colors.white, // Set icon color to white
+              ),
             ),
           )
         ],
