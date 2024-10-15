@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../const/colors.dart';
 import '../provider/cart_provider.dart';
 import '../provider/product_provider.dart';
+import '../widgets/custom_bottom_nav.dart';
 import '../widgets/header.dart';
 import '../widgets/product_card.dart';
 import '../widgets/section_text.dart';
@@ -20,6 +21,7 @@ class CategoryPage extends ConsumerWidget {
     final cartProviderRef = ref.watch(cartProvider);
 
     return Scaffold(
+      bottomNavigationBar: const CustomNavBar(),
       backgroundColor: MyGlobal.TextWhite,
       appBar: AppBar(
         title: Container(

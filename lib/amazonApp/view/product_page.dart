@@ -44,8 +44,8 @@ class ProductPage extends ConsumerWidget {
                       child: Image.network(product.image)),
                   SizedBox(height: 20), // Display product image
                   Container(
-                    color: Colors.brown.shade900,
-                    height: screenSize.height / 1.5,
+                    color: Colors.black,
+                    //height: screenSize.height / 1.5,
                     child: Column(
                       children: [
                         SizedBox(height: 20),
@@ -56,19 +56,25 @@ class ProductPage extends ConsumerWidget {
                               product.title,
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 24,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
                         SizedBox(height: 20),
                         Text(" PRICE : \$${product.price.toString()}",
-                            style: TextStyle(color: Colors.white)),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold)),
                         Padding(
                           padding: const EdgeInsets.all(24.0),
                           child: Center(
                               child: Text(product.description,
-                                  style: TextStyle(color: Colors.white))),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold))),
                         ),
                       ],
                     ),

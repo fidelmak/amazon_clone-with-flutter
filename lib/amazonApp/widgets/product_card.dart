@@ -34,7 +34,8 @@ class ProductCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.all(4.0),
@@ -51,7 +52,7 @@ class ProductCard extends StatelessWidget {
               // Make the container fill the parent
               child: Column(
                 crossAxisAlignment:
-                    CrossAxisAlignment.start, // Align text to the start
+                    CrossAxisAlignment.center, // Align text to the start
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(4.0),
@@ -59,14 +60,15 @@ class ProductCard extends StatelessWidget {
                       productTitle,
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: screenSize.width / 42,
+                        fontSize: screenSize.width / 28,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                   // Pushes the Row to the bottom
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         productPrice,
@@ -80,10 +82,10 @@ class ProductCard extends StatelessWidget {
                         ),
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -7,6 +7,7 @@ import '../const/colors.dart';
 import '../provider/cart_provider.dart';
 import '../provider/product_provider.dart';
 import '../provider/state_notifiers.dart';
+import '../widgets/category_card.dart';
 import '../widgets/custom_bottom_nav.dart';
 import '../widgets/header.dart';
 import '../widgets/product_card.dart';
@@ -128,12 +129,12 @@ class HomePage extends ConsumerWidget {
                               ),
                             );
                           },
-                          child: ProductCard(
+                          child: CategoryCard(
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: product.title,
-                            h: screenSize.height / 3.2,
-                            addFunc: () {}, // Adjust card height
+                            h: screenSize.height / 4.2,
+                            // Adjust card height
                           ),
                         ),
                       ),
@@ -188,12 +189,12 @@ class HomePage extends ConsumerWidget {
                               ),
                             );
                           },
-                          child: ProductCard(
+                          child: CategoryCard(
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: product.title,
-                            h: screenSize.height / 3.2,
-                            addFunc: () {}, // Adjust card height
+                            h: screenSize.height / 4.2,
+                            // Adjust card height
                           ),
                         ),
                       ),
@@ -247,12 +248,12 @@ class HomePage extends ConsumerWidget {
                               ),
                             );
                           },
-                          child: ProductCard(
+                          child: CategoryCard(
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: product.title,
-                            h: screenSize.height / 3.2,
-                            addFunc: () {}, // Adjust card height
+                            h: screenSize.height / 4.2,
+                            // Adjust card height
                           ),
                         ),
                       ),
@@ -292,6 +293,9 @@ class HomePage extends ConsumerWidget {
                   spacing: 8.0, // Horizontal spacing between items
                   runSpacing: 8.0, // Vertical spacing between rows
                   children: twoProducts.map((product) {
+                    String productTitle = product.title
+                        .substring(0, (product.title.length / 2).round());
+
                     return SizedBox(
                       width: screenSize.width / 2 -
                           16, // 2 products per row, minus padding
@@ -307,12 +311,12 @@ class HomePage extends ConsumerWidget {
                               ),
                             );
                           },
-                          child: ProductCard(
+                          child: CategoryCard(
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: product.title,
-                            h: screenSize.height / 3.2,
-                            addFunc: () {}, // Adjust card height
+                            h: screenSize.height / 4.2,
+                            // Adjust card height
                           ),
                         ),
                       ),
@@ -341,6 +345,9 @@ class HomePage extends ConsumerWidget {
                   spacing: 8.0, // Horizontal spacing between items
                   runSpacing: 8.0, // Vertical spacing between rows
                   children: products.map((product) {
+                    String productTitle = product.title
+                        .substring(0, (product.title.length / 2.7).round());
+
                     return SizedBox(
                       width: screenSize.width / 2 -
                           16, // 2 products per row, minus padding
@@ -359,8 +366,8 @@ class HomePage extends ConsumerWidget {
                           child: ProductCard(
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
-                            productTitle: product.title,
-                            h: screenSize.height / 3.2,
+                            productTitle: productTitle,
+                            h: screenSize.height / 4.2,
                             addFunc: () {
                               cartProviderRef.add(product);
                             }, // Adjust card height
