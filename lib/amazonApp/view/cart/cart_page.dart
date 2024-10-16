@@ -32,8 +32,8 @@ class CartPage extends ConsumerWidget {
     return Scaffold(
       bottomNavigationBar: const CustomNavBar(),
       appBar: AppBar(
-        title: Text('Your Cart'),
-        backgroundColor: Colors.orange,
+        title: Text('Your Cart', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.black,
       ),
       body: cart.isEmpty
           ? Center(

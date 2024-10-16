@@ -67,15 +67,20 @@ class HomePage extends ConsumerWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: ClipOval(
-              child: Container(
-                color: Colors.white,
-                width: 30,
-                height: 30,
-                child: Icon(
-                  Icons.person,
-                  color: Colors.black,
-                  size: 24,
+            child: GestureDetector(
+              onTap: () {
+                context.go("/profile");
+              },
+              child: ClipOval(
+                child: Container(
+                  color: Colors.white,
+                  width: 30,
+                  height: 30,
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.black,
+                    size: 24,
+                  ),
                 ),
               ),
             ),

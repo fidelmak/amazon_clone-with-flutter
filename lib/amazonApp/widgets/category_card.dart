@@ -20,7 +20,7 @@ class CategoryCard extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     return Container(
       height: h, // Dynamic height passed as a parameter
-      width: screenSize.width / 3,
+      width: screenSize.width / 2.5,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
