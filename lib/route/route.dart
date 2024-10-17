@@ -4,10 +4,12 @@ import 'package:go_router/go_router.dart';
 
 import '../amazonApp/view/home_screen.dart';
 import '../amazonApp/view/profile/profile.dart';
+import '../amazonApp/widgets/auth_widget.dart';
+import '../splash_screen.dart';
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/splash',
     routes: [
       GoRoute(
         path: '/home',
@@ -20,6 +22,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/profile',
         builder: (context, state) => const ProfilePage(),
+      ),
+      GoRoute(
+        path: '/splash',
+        builder: (context, state) => SplashScreen(),
+      ),
+      GoRoute(
+        path: '/auth',
+        builder: (context, state) => AuthWidget(),
       ),
     ],
   );
