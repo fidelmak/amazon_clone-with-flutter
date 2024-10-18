@@ -84,9 +84,9 @@ class LoginPage extends ConsumerWidget {
                     borderRadius:
                         BorderRadius.only(topLeft: Radius.circular(60))),
                 child: Padding(
-                  padding: const EdgeInsets.all(18.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Center(
                           child: Text(
@@ -104,7 +104,7 @@ class LoginPage extends ConsumerWidget {
                           boxShadow: [
                             BoxShadow(
                               color:
-                                  Colors.grey.withOpacity(0.5), // Shadow color
+                                  Colors.grey.withOpacity(0.1), // Shadow color
                               spreadRadius: 5, // How much the shadow spreads
                               blurRadius: 7, // How blurry the shadow is
                               offset: Offset(0,
@@ -126,7 +126,7 @@ class LoginPage extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 20),
                       Container(
                         width: screenSize.width / 1.2,
                         height: screenSize.height / 14,
@@ -136,7 +136,7 @@ class LoginPage extends ConsumerWidget {
                           boxShadow: [
                             BoxShadow(
                               color:
-                                  Colors.grey.withOpacity(0.5), // Shadow color
+                                  Colors.grey.withOpacity(0.1), // Shadow color
                               spreadRadius: 5, // How much the shadow spreads
                               blurRadius: 7, // How blurry the shadow is
                               offset: Offset(0,
@@ -160,7 +160,7 @@ class LoginPage extends ConsumerWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: 20),
                       CustomButton(
                         screenSize: screenSize,
                         text: 'Login',
