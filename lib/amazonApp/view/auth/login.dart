@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../provider/auth_provider.dart';
+// Import the signup page
 
 class LoginPage extends ConsumerWidget {
   final TextEditingController emailController = TextEditingController();
@@ -35,12 +37,33 @@ class LoginPage extends ConsumerWidget {
                 );
 
                 if (user != null) {
-                  print('Login successful: ${user.email}');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Login successful! Welcome, ${user.email}'),
+                      backgroundColor: Colors.orange,
+                    ),
+                  );
+
+                  context.go("/home");
+                  // Navigator.pushReplacementNamed(context, '/home');
                 } else {
-                  print('Login failed');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Login Failed '),
+                      backgroundColor: Colors.orange,
+                    ),
+                  );
                 }
               },
               child: Text('Login'),
+            ),
+            SizedBox(height: 20),
+            TextButton(
+              onPressed: () {
+                context.go("/signup");
+                // Navigate to the signup page
+              },
+              child: Text('Don\'t have an account? Sign up'),
             ),
           ],
         ),

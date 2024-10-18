@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 // FirebaseAuth instance provider
 final firebaseAuthProvider = Provider<FirebaseAuth>((ref) {
   return FirebaseAuth.instance;
@@ -51,6 +52,10 @@ class AuthRepository {
       print('Registration Error: $e');
       return null;
     }
+  }
+
+  User? getCurrentUser() {
+    return _firebaseAuth.currentUser; // Returns the currently signed-in user
   }
 
   // Sign out
