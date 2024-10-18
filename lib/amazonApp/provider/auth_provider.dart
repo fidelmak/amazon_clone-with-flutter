@@ -54,8 +54,14 @@ class AuthRepository {
     }
   }
 
+// Returns the currently signed-in user
   User? getCurrentUser() {
-    return _firebaseAuth.currentUser; // Returns the currently signed-in user
+    return _firebaseAuth.currentUser;
+  }
+
+// Get the current user's UID
+  String? getUserUID() {
+    return _firebaseAuth.currentUser?.uid;
   }
 
   // Sign out

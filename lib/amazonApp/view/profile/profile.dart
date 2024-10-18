@@ -49,7 +49,7 @@ class ProfilePage extends ConsumerWidget {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('You have been logged out'),
-                      backgroundColor: Colors.green,
+                      backgroundColor: Colors.orange,
                     ),
                   );
                   // Optionally, you can navigate to the login screen after logout
