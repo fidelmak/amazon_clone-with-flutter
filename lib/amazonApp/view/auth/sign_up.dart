@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../provider/auth_provider.dart';
+import '../../widgets/custom_button.dart';
 
 class SignupPage extends ConsumerWidget {
   final TextEditingController emailController = TextEditingController();
@@ -11,6 +12,20 @@ class SignupPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authRepository = ref.watch(authRepositoryProvider);
+    final screenSize = MediaQuery.of(context).size;
+    void signup() async {
+      final user = await authRepository.registerWithEmailPassword(
+        emailController.text.trim(),
+        passwordController.text.trim(),
+      );
+
+      if (user != null) {
+        // Optionally navigate to the home page after signup
+        context.go('/home');
+      } else {
+        context.go('/login');
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(title: Text('Sign Up')),
@@ -28,22 +43,10 @@ class SignupPage extends ConsumerWidget {
               obscureText: true,
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                final user = await authRepository.registerWithEmailPassword(
-                  emailController.text.trim(),
-                  passwordController.text.trim(),
-                );
-
-                if (user != null) {
-                  print('Signup successful: ${user.email}');
-                  // Optionally navigate to the home page after signup
-                  context.go('/home');
-                } else {
-                  context.go('/login');
-                }
-              },
-              child: Text('Sign Up'),
+            CustomButton(
+              screenSize: screenSize,
+              text: 'Signup',
+              onPressed: signup,
             ),
           ],
         ),
