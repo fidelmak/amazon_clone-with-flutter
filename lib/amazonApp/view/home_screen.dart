@@ -26,7 +26,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cartProviderRef = ref.watch(cartProvider);
+    final cartProviderRef = ref.watch(cartProvider.notifier);
 
     final screenSize = MediaQuery.of(context).size;
     final ProductRef = ref.watch(ProductFutureProvider);
@@ -138,7 +138,7 @@ class HomePage extends ConsumerWidget {
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: product.title,
-                            h: screenSize.height / 4.2,
+                            h: screenSize.height / 3.2,
                             // Adjust card height
                           ),
                         ),
@@ -198,7 +198,7 @@ class HomePage extends ConsumerWidget {
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: product.title,
-                            h: screenSize.height / 4.2,
+                            h: screenSize.height / 3.2,
                             // Adjust card height
                           ),
                         ),
@@ -257,7 +257,7 @@ class HomePage extends ConsumerWidget {
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: product.title,
-                            h: screenSize.height / 4.2,
+                            h: screenSize.height / 3.2,
                             // Adjust card height
                           ),
                         ),
@@ -320,7 +320,7 @@ class HomePage extends ConsumerWidget {
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: product.title,
-                            h: screenSize.height / 4.2,
+                            h: screenSize.height / 3.2,
                             // Adjust card height
                           ),
                         ),
@@ -372,9 +372,9 @@ class HomePage extends ConsumerWidget {
                             productImage: product.image,
                             productPrice: "\$${product.price.toString()}",
                             productTitle: productTitle,
-                            h: screenSize.height / 4.2,
+                            h: screenSize.height / 3.2,
                             addFunc: () {
-                              cartProviderRef.add(product);
+                              cartProviderRef.addProduct(product, context);
                             }, // Adjust card height
                           ),
                         ),

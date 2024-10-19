@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
   final productImage;
-
   final String productPrice;
   final String productTitle;
   final double h;
@@ -18,6 +17,11 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+
+    // Define responsive font sizes based on screen width
+    final double titleFontSize = screenSize.width * 0.03; // 4% of screen width
+    final double priceFontSize = screenSize.width * 0.025; // 5% of screen width
+
     return Container(
       height: h, // Dynamic height passed as a parameter
       width: screenSize.width / 2.5,
@@ -29,7 +33,6 @@ class CategoryCard extends StatelessWidget {
         ),
         color: Colors.white,
       ),
-
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: Column(
@@ -45,13 +48,10 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
             Container(
-              width: screenSize.width,
-
-              // Make the container fill the parent
+              width: screenSize.width, // Make the container fill the parent
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // Align text to the start
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(4.0),
@@ -59,15 +59,18 @@ class CategoryCard extends StatelessWidget {
                       productTitle,
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: screenSize.width / 38,
+                        fontSize:
+                            titleFontSize, // Responsive font size for title
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  // Pushes the Row to the bottom
                   Text(
                     productPrice,
-                    style: TextStyle(color: Colors.black87, fontSize: 24),
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: priceFontSize, // Responsive font size for price
+                    ),
                   ),
                 ],
               ),

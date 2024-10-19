@@ -63,7 +63,7 @@ class CartPage extends ConsumerWidget {
                             icon: Icon(Icons.remove_circle_outline,
                                 color: Colors.red),
                             onPressed: () {
-                              delCart.removeProduct(product);
+                              delCart.removeProduct(product, context);
                             },
                           ),
                         ),

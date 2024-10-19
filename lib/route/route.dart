@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../amazonApp/view/auth/login.dart';
 import '../amazonApp/view/auth/sign_up.dart';
 import '../amazonApp/view/home_screen.dart';
+import '../amazonApp/view/product/user_product.dart';
 import '../amazonApp/view/profile/profile.dart';
 import '../amazonApp/widgets/auth_widget.dart';
 import '../splash_screen.dart';
@@ -41,6 +42,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/login',
         builder: (context, state) => LoginPage(),
+      ),
+      //CreateProductPage(),
+      GoRoute(
+        path: '/create',
+        builder: (context, state) => CreateProductPage(),
       ),
     ],
   );

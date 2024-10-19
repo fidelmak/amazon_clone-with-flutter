@@ -41,143 +41,136 @@ class LoginPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.5),
-            image: DecorationImage(
-              image: AssetImage(
-                  "assets/images/bg.png"), // Add your image path here
-              fit: BoxFit.cover, // Cover the whole screen
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                //decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 18,
-                    ),
-                    Center(
-                      child: Text(
-                        "",
-                        style: TextStyle(
-                          fontSize: 56,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.5),
+              image: DecorationImage(
+                image: AssetImage(
+                    "assets/images/bg.png"), // Add your image path here
+                fit: BoxFit.cover, // Cover the whole screen
               ),
-              Container(
-                height: screenSize.height / 2,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.only(topLeft: Radius.circular(60))),
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Container(
+                  //decoration: BoxDecoration(color: Colors.black.withOpacity(0.5)),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Center(
-                          child: Text(
-                        'Login',
-                        style: TextStyle(
-                            fontSize: 36, fontWeight: FontWeight.bold),
-                      )),
-                      SizedBox(height: 20),
-                      Container(
-                        width: screenSize.width / 1.2,
-                        height: screenSize.height / 14,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color:
-                                  Colors.grey.withOpacity(0.1), // Shadow color
-                              spreadRadius: 5, // How much the shadow spreads
-                              blurRadius: 7, // How blurry the shadow is
-                              offset: Offset(0,
-                                  3), // Changes the position of the shadow (x, y)
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                            controller: emailController,
-                            decoration: InputDecoration(
-                              labelText: 'Email',
-                              border: InputBorder.none, // Removes the underline
-                              enabledBorder: InputBorder
-                                  .none, // Removes the underline when the TextField is enabled
-                              focusedBorder: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        width: screenSize.width / 1.2,
-                        height: screenSize.height / 14,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color:
-                                  Colors.grey.withOpacity(0.1), // Shadow color
-                              spreadRadius: 5, // How much the shadow spreads
-                              blurRadius: 7, // How blurry the shadow is
-                              offset: Offset(0,
-                                  3), // Changes the position of the shadow (x, y)
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                            obscureText: true,
-                            controller: passwordController,
-                            decoration: InputDecoration(
-                              labelText: 'Password',
-
-                              border: InputBorder.none, // Removes the underline
-                              enabledBorder: InputBorder
-                                  .none, // Removes the underline when the TextField is enabled
-                              focusedBorder: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      CustomButton(
-                        screenSize: screenSize,
-                        text: 'Login',
-                        onPressed: login,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          context.go("/signup");
-                          // Navigate to the signup page
-                        },
-                        child: Text('Don\'t have an account? Sign up'),
+                      SizedBox(
+                        height: screenSize.height / 2,
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                Container(
+                  height: screenSize.height / 2,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:
+                          BorderRadius.only(topLeft: Radius.circular(60))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Center(
+                            child: Text(
+                          'Login',
+                          style: TextStyle(
+                              fontSize: 36, fontWeight: FontWeight.bold),
+                        )),
+                        SizedBox(height: 20),
+                        Container(
+                          width: screenSize.width / 1.2,
+                          height: screenSize.height / 14,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey
+                                    .withOpacity(0.1), // Shadow color
+                                spreadRadius: 5, // How much the shadow spreads
+                                blurRadius: 7, // How blurry the shadow is
+                                offset: Offset(0,
+                                    3), // Changes the position of the shadow (x, y)
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(
+                              controller: emailController,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                border:
+                                    InputBorder.none, // Removes the underline
+                                enabledBorder: InputBorder
+                                    .none, // Removes the underline when the TextField is enabled
+                                focusedBorder: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          width: screenSize.width / 1.2,
+                          height: screenSize.height / 14,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey
+                                    .withOpacity(0.1), // Shadow color
+                                spreadRadius: 5, // How much the shadow spreads
+                                blurRadius: 7, // How blurry the shadow is
+                                offset: Offset(0,
+                                    3), // Changes the position of the shadow (x, y)
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(
+                              obscureText: true,
+                              controller: passwordController,
+                              decoration: InputDecoration(
+                                labelText: 'Password',
+
+                                border:
+                                    InputBorder.none, // Removes the underline
+                                enabledBorder: InputBorder
+                                    .none, // Removes the underline when the TextField is enabled
+                                focusedBorder: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        CustomButton(
+                          screenSize: screenSize,
+                          text: 'Login',
+                          onPressed: login,
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.go("/signup");
+                            // Navigate to the signup page
+                          },
+                          child: Text('Don\'t have an account? Sign up'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

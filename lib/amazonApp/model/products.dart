@@ -15,6 +15,7 @@ class Product {
     required this.category,
     required this.image,
     required this.rating,
+    required String userId,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -26,6 +27,7 @@ class Product {
       category: json['category'],
       image: json['image'],
       rating: Rating.fromJson(json['rating']),
+      userId: '',
     );
   }
 

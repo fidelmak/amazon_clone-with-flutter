@@ -18,7 +18,7 @@ class CategoryPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final screenSize = MediaQuery.of(context).size;
     final productRef = ref.watch(categoryProductProvider(category));
-    final cartProviderRef = ref.watch(cartProvider);
+    final cartProviderRef = ref.watch(cartProvider.notifier);
 
     return Scaffold(
       bottomNavigationBar: const CustomNavBar(),
@@ -92,7 +92,7 @@ class CategoryPage extends ConsumerWidget {
                             productTitle: product.title,
                             h: screenSize.height / 3.2,
                             addFunc: () {
-                              cartProviderRef.add(product);
+                              cartProviderRef.addProduct(product, context);
                             }, // Adjust card height
                           ),
                         ),

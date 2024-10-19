@@ -44,8 +44,7 @@ class SignupPage extends ConsumerWidget {
     }
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
             decoration: BoxDecoration(

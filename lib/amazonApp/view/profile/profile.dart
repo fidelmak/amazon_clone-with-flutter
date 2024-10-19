@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../provider/auth_provider.dart'; // Import the auth provider
 import '../../widgets/custom_bottom_nav.dart';
+import '../../widgets/custom_button.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -11,13 +12,14 @@ class ProfilePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authRepository = ref.watch(authRepositoryProvider);
+    final screenSize = MediaQuery.of(context).size;
 
     final user = authRepository.getCurrentUser(); // Get the current user
 
     return Scaffold(
       appBar: AppBar(title: const Text('Profile')),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,30 +35,35 @@ class ProfilePage extends ConsumerWidget {
             ),
             // Add padding and email below the image
             SizedBox(height: 16),
-            Center(
-              child: Text(
-                user?.email ?? 'No Email Available',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
+            Text(
+              user?.email ?? 'No Email Available',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            const Center(child: Text('Profile Page')),
+            Text('Profile Page'),
             SizedBox(height: 20),
-            Center(
-              child: TextButton(
-                onPressed: () async {
-                  await authRepository.signOut(); // Call the logout function
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('You have been logged out'),
-                      backgroundColor: Colors.orange,
-                    ),
-                  );
-                  // Optionally, you can navigate to the login screen after logout
-                  context.go("/login");
-                },
-                child: Text("Logout", style: TextStyle(color: Colors.red)),
-              ),
+
+            CustomButton(
+              screenSize: screenSize,
+              text: 'Create a Product',
+              onPressed: () {
+                context.go('/create');
+              },
+            ),
+
+            TextButton(
+              onPressed: () async {
+                await authRepository.signOut(); // Call the logout function
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('You have been logged out'),
+                    backgroundColor: Colors.orange,
+                  ),
+                );
+                // Optionally, you can navigate to the login screen after logout
+                context.go("/login");
+              },
+              child: Text("Logout", style: TextStyle(color: Colors.red)),
             ),
           ],
         ),
