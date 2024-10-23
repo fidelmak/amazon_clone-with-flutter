@@ -30,6 +30,7 @@ class ScreenSizeNotifier extends StateNotifier<ScreenSizeState> {
     // Calculate scaling factor based on width, or height if preferred
     final scaleFactor = screenWidth / referenceWidth;
 
+    // Update the state with the new screen dimensions and scale factor
     state = ScreenSizeState(
       screenWidth: screenWidth,
       screenHeight: screenHeight,
@@ -44,12 +45,7 @@ final screenSizeProvider =
   (ref) => ScreenSizeNotifier(),
 );
 
-/// screenSize Provider
-final newScreenSizeProvider = Provider<Size>((ref) {
-  // `context` will need to be passed when this is used in a widget
-  throw UnimplementedError('Screen size provider requires BuildContext.');
-});
-
+// ScreenSizeProviderInitializer to initialize screen size
 class ScreenSizeProviderInitializer extends ConsumerWidget {
   final Widget child;
 
@@ -58,8 +54,9 @@ class ScreenSizeProviderInitializer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final screenSize = MediaQuery.of(context).size;
-    ref.read(newScreenSizeProvider.overrideWithValue(screenSize));
+    // Update the screen size whenever the widget is built
+    ref.read(screenSizeProvider.notifier).updateScreenSize(context);
+
     return child;
   }
 }
