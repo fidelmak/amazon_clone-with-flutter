@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../provider/dimension_provider.dart';
+
 class ProductCard extends StatelessWidget {
   final productImage;
   final VoidCallback addFunc;
@@ -18,17 +20,18 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
+    //final screenSize = MediaQuery.of(context).size;
+    AppScale _scale = AppScale(context);
 
     // Define responsive font sizes based on screen width
-    final double titleFontSize = screenSize.width * 0.03; // 5% of screen width
-    final double priceFontSize = screenSize.width * 0.025; // 4% of screen width
-    final double buttonFontSize =
-        screenSize.width * 0.065; // 4.5% of screen width
+    // final double titleFontSize = screenSize.width * 0.03; // 5% of screen width
+    // final double priceFontSize = screenSize.width * 0.025; // 4% of screen width
+    // final double buttonFontSize =
+    //     screenSize.width * 0.065; // 4.5% of screen width
 
     return Container(
       height: h, // Dynamic height passed as a parameter
-      width: screenSize.width / 3,
+      width: _scale.scaledWidth(1),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
@@ -48,12 +51,13 @@ class ProductCard extends StatelessWidget {
               child: Image.network(
                 productImage,
                 width: double.infinity,
-                height: h / 2, // Image height relative to card height
+                height: h / 3.2, // Image height relative to card height
                 fit: BoxFit.contain,
               ),
             ),
             Container(
-              width: screenSize.width, // Make the container fill the parent
+              width:
+                  _scale.scaledWidth(1), // Make the container fill the parent
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -63,8 +67,8 @@ class ProductCard extends StatelessWidget {
                       productTitle,
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize:
-                            titleFontSize, // Responsive font size for title
+                        fontSize: _scale.labelDim /
+                            1.3, // Responsive font size for title
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -78,7 +82,7 @@ class ProductCard extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.black87,
                           fontSize:
-                              priceFontSize, // Responsive font size for price
+                              _scale.labelDim, // Responsive font size for price
                         ),
                       ),
                       TextButton(
@@ -87,8 +91,8 @@ class ProductCard extends StatelessWidget {
                           "Add",
                           style: TextStyle(
                             color: Colors.red,
-                            fontSize:
-                                buttonFontSize, // Responsive font size for button
+                            fontSize: _scale.labelDim *
+                                1.5, // Responsive font size for button
                           ),
                         ),
                       ),

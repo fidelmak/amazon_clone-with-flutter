@@ -7,6 +7,7 @@ class SectionText extends StatelessWidget {
     super.key,
     required this.yourText,
     required this.more,
+    required textSize,
   });
 
   @override

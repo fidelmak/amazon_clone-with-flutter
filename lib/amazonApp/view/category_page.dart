@@ -63,6 +63,7 @@ class CategoryPage extends ConsumerWidget {
               child: SectionText(
                 yourText: "Category",
                 more: () {},
+                textSize: null,
               ),
             ),
             productRef.when(
