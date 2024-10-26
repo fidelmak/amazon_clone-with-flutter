@@ -18,11 +18,13 @@ class ProductPage extends ConsumerWidget {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.all(16.0),
           child: CustomButton(
+            desireColor: Colors.orange.withOpacity(0.6),
             screenSize: screenSize, text: 'Buy',
             onPressed: () {}, // Set the button width to half the screen width
           ),
         ),
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: Text('Product Details'),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
@@ -44,7 +46,7 @@ class ProductPage extends ConsumerWidget {
                       child: Image.network(product.image)),
                   SizedBox(height: 20), // Display product image
                   Container(
-                    color: Colors.black,
+                    color: Colors.black.withOpacity(0.8),
                     //height: screenSize.height / 1.5,
                     child: Column(
                       children: [

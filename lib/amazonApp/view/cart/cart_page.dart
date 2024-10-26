@@ -30,6 +30,7 @@ class CartPage extends ConsumerWidget {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       bottomNavigationBar: const CustomNavBar(),
       appBar: AppBar(
         title: Text('Your Cart', style: TextStyle(color: Colors.white)),
@@ -47,6 +48,7 @@ class CartPage extends ConsumerWidget {
                     itemBuilder: (context, index) {
                       final product = cart[index];
                       return Card(
+                        color: Colors.white,
                         margin:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                         child: ListTile(
@@ -104,6 +106,7 @@ class CartPage extends ConsumerWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: CustomButton(
+                    desireColor: Colors.orange.withOpacity(0.6),
                     screenSize: screenSize,
                     text: 'Buy',
                     onPressed:

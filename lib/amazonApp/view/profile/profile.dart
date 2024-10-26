@@ -17,12 +17,12 @@ class ProfilePage extends ConsumerWidget {
     final user = authRepository.getCurrentUser(); // Get the current user
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile')),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Profile image container
             Container(
@@ -43,12 +43,40 @@ class ProfilePage extends ConsumerWidget {
             Text('Profile Page'),
             SizedBox(height: 20),
 
-            CustomButton(
-              screenSize: screenSize,
-              text: 'Create a Product',
-              onPressed: () {
-                context.go('/create');
-              },
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomButton(
+                desireColor: Colors.orange,
+                screenSize: screenSize,
+                text: 'Create a Product',
+                onPressed: () {
+                  context.go('/create');
+                },
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomButton(
+                desireColor: Colors.orange.withOpacity(0.6),
+                screenSize: screenSize,
+                text: 'Edit Product',
+                onPressed: () {
+                  context.go('/create');
+                },
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomButton(
+                desireColor: Colors.orange.withOpacity(0.3),
+                screenSize: screenSize,
+                text: 'View All Product',
+                onPressed: () {
+                  context.go('/create');
+                },
+              ),
             ),
 
             TextButton(

@@ -13,6 +13,7 @@ class CustomNavBar extends ConsumerWidget {
     final currentIndex = ref.watch(bottomNavIndexProvider);
 
     return BottomNavigationBar(
+      backgroundColor: Colors.black,
       selectedItemColor: Colors.orange, // Set the color for the selected item
       unselectedItemColor: Colors.grey,
       currentIndex: currentIndex,

@@ -6,8 +6,9 @@ class CustomButton extends StatelessWidget {
     required this.screenSize,
     required this.text,
     required this.onPressed,
+    this.desireColor,
   });
-
+  final desireColor;
   final Size screenSize;
   final String text;
   final VoidCallback onPressed;
@@ -17,7 +18,7 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.orange, // Set background color to white
+        backgroundColor: desireColor, // Set background color to white
         foregroundColor: Colors.white, // Set text color to orange
         side: BorderSide(color: Colors.white, width: 2), // Add orange border
         shape: RoundedRectangleBorder(

@@ -1,10 +1,13 @@
 import 'dart:io'; // For using File class
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart'; // For image picking
 import 'package:firebase_auth/firebase_auth.dart'; // For Firebase Authentication
 import '../../model/products.dart';
 import '../../provider/create_provider.dart';
+import '../../widgets/custom_bottom_nav.dart';
+import '../../widgets/custom_button.dart';
 
 class CreateProductPage extends ConsumerStatefulWidget {
   @override
@@ -45,7 +48,11 @@ class _CreateProductPageState extends ConsumerState<CreateProductPage> {
     if (user == null) {
       // If the user is not logged in, show an error
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('You must be logged in to create a product')),
+        SnackBar(
+            content: Text(
+              'You must be logged in to create a product',
+            ),
+            backgroundColor: Colors.orange),
       );
       return;
     }
@@ -54,7 +61,9 @@ class _CreateProductPageState extends ConsumerState<CreateProductPage> {
       if (_pickedImage == null) {
         // Show a SnackBar if no image is selected
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Please select an image')),
+          SnackBar(
+              content: Text('Please select an image'),
+              backgroundColor: Colors.orange),
         );
         return;
       }
@@ -78,16 +87,21 @@ class _CreateProductPageState extends ConsumerState<CreateProductPage> {
 
       // Show success SnackBar
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Product added successfully!')),
+        SnackBar(
+            content: Text('Product added successfully!'),
+            backgroundColor: Colors.orange),
       );
+      context.go('/home');
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: const CustomNavBar(),
       appBar: AppBar(
-        title: Text('Create Product'),
+        title: Text('Create Your Product'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -95,7 +109,8 @@ class _CreateProductPageState extends ConsumerState<CreateProductPage> {
           key: _formKey,
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextFormField(
                   controller: _titleController,
@@ -139,20 +154,27 @@ class _CreateProductPageState extends ConsumerState<CreateProductPage> {
                   },
                 ),
                 // Display picked image
+                SizedBox(
+                  height: 10,
+                ),
                 if (_pickedImage != null)
-                  Center(
-                    child: Image.file(
-                      _pickedImage!,
-                      width: 150,
-                      height: 150,
-                      fit: BoxFit.cover,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Image.file(
+                        _pickedImage!,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                SizedBox(height: 10),
+
                 // Button to pick an image
-                ElevatedButton(
+                TextButton(
                   onPressed: _pickImage,
-                  child: Text('Pick Image'),
+                  child: Text('Pick Image',
+                      style: TextStyle(color: Colors.orange)),
                 ),
                 TextFormField(
                   controller: _ratingRateController,
@@ -177,9 +199,15 @@ class _CreateProductPageState extends ConsumerState<CreateProductPage> {
                   },
                 ),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _createProduct,
-                  child: Text('Add Product'),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomButton(
+                    desireColor: Colors.orange.withOpacity(0.6),
+                    screenSize: screenSize,
+                    text: 'Create',
+                    onPressed: _createProduct,
+                  ),
                 ),
               ],
             ),
